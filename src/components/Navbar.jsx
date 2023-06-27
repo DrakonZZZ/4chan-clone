@@ -1,8 +1,14 @@
-import React from 'react';
+import { useState } from 'react';
+import { useGlobalContext } from '../context';
+import Modal from './Modal';
 import logo from '../assets/logo.png';
 import links from './links';
 import socialLinks from './socialLinks';
+
 const Navbar = () => {
+  const { cartList } = useGlobalContext();
+  const [modal, setModal] = useState(false);
+
   return (
     <nav className="navbar">
       <div className="nav-center">
@@ -43,6 +49,14 @@ const Navbar = () => {
             );
           })}
         </ul>
+        <div className="cart">
+          {modal && <Modal />}
+          <span className="blip">{cartList.length}</span>
+          <i
+            className="fa-solid fa-cart-shopping nav-icon"
+            onClick={() => setModal(!modal)}
+          ></i>
+        </div>
       </div>
     </nav>
   );

@@ -1,7 +1,17 @@
 import { useState } from 'react';
+import { useGlobalContext } from '../context';
 import tourData from './tourData';
 
 const TourList = () => {
+  const { cart, setCart, cartList, setCartlist, cartPrice, setCartprice } =
+    useGlobalContext();
+
+  const modalData = (id) => {
+    const newDate = tourData.find((data) => data.id === id);
+    setCartlist([...cartList, newDate]);
+    setCartprice([...cartPrice, newDate.price]);
+  };
+
   return (
     <>
       {tourData.map((data) => {
@@ -33,12 +43,14 @@ const TourList = () => {
                   {country}
                 </p>
                 <p>{duration}</p>
-                <p>{price}</p>
+                <p>{`$${price}`}</p>
               </div>
             </div>
-            <button className="btn tour-btn-in" onClick={() => {}}>
-              Add
-            </button>
+            <div className="btn-contain">
+              <button className="btn tour-btn-in" onClick={() => modalData(id)}>
+                Add
+              </button>
+            </div>
           </article>
         );
       })}
