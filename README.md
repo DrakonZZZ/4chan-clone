@@ -1,2 +1,2 @@
 # Country-Road-revision
-visit [Country road dummy siet](https://country-road-revision.vercel.app/)
+visit [Country road dummy site](https://country-road-revision.vercel.app/)
